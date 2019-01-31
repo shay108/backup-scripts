@@ -1,2 +1,2 @@
 # backup-scripts
-Home backup scripts written in batch
+Daily backup scripts (written in batch), for home use.
