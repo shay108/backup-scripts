@@ -5,8 +5,8 @@ REM  ##################################
 REM  ### Create a folder corresponding to today's date ###
 REM  ##################################
 set year=%date:~-4%
-set month=%date:~4,2%
-set day=%date:~7,2%
+set month=%date:~3,2%
+set day=%date:~,2%
 set TODAY=%year%-%month%-%day%
 set BCK_DIR=C:\Dropbox\Shay's\My Documents\Backup\Backups by Date\%TODAY%
 md "%BCK_DIR%"
