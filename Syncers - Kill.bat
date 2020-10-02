@@ -6,8 +6,4 @@ echo "Killing Dropbox ..."
 taskkill /IM Dropbox.exe /F
 echo "Dropbox killed"
 
-REM echo "Killing OneDrive ..."
-REM taskkill /IM OneDrive.exe /F
-REM echo "OneDrive killed"
-
 echo "All Syncers killed"
