@@ -4,18 +4,14 @@ chcp 65001
 REM  ##################################
 REM  ### Create a folder corresponding to today's date ###
 REM  ##################################
+set BCK_ROOT_DIR=C:\Dropbox\Shay's\My Documents\Backup\Backups by Date
 set year=%date:~-4%
 set month=%date:~3,2%
 set day=%date:~,2%
 set TODAY=%year%-%month%-%day%
-set BCK_DIR=C:\Dropbox\Shay's\My Documents\Backup\Backups by Date\%TODAY%
-md "%BCK_DIR%"
+set BCK_DIR=%BCK_ROOT_DIR%\%TODAY%
 
-REM  #############################
-REM  ### Backup Google Chrome Tabs Outliner ###
-REM  #############################
-md "%BCK_DIR%\Google Chrome Tabs Outliner - Backup\chrome-extension_eggkanocgddhmamlbiijnphhppkpkmkl_0.indexeddb.leveldb"
-xcopy /E "C:\Users\Shay\AppData\Local\Google\Chrome\User Data\Default\IndexedDB\chrome-extension_eggkanocgddhmamlbiijnphhppkpkmkl_0.indexeddb.leveldb\*.*" "%BCK_DIR%\Google Chrome Tabs Outliner - Backup\chrome-extension_eggkanocgddhmamlbiijnphhppkpkmkl_0.indexeddb.leveldb\"
+md "%BCK_DIR%"
 
 REM  ##########################
 REM  ### Backup Unfinished .torrent files ###
@@ -111,9 +107,10 @@ echo ================ >> %FILE%
 REM  ###########################
 REM  ### Delete the oldest backup directory ###
 REM  ###########################
-dir /o:n /b "C:\Dropbox\Shay's\My Documents\Backup\Backups by Date\" > C:\BCK_LIST.txt
-set /p BCK_TO_DEL= <C:\BCK_LIST.txt
-rmdir /S /Q "C:\Dropbox\Shay's\My Documents\Backup\Backups by Date\%BCK_TO_DEL%"
-del C:\BCK_LIST.txt
+set BCK_LIST_FILE="%BCK_ROOT_DIR%\BCK_LIST.txt"
+dir /ad /b /o:n "%BCK_ROOT_DIR%" > %BCK_LIST_FILE%
+set /p FOLDER_TO_DEL=<%BCK_LIST_FILE%
+rmdir /S /Q "%BCK_ROOT_DIR%\%FOLDER_TO_DEL%"
+del %BCK_LIST_FILE%
 
 REM ALL DONE
